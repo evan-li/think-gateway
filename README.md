@@ -44,6 +44,8 @@
   `php ./websocket.php /index/gateway/1/business/1` 表示启动gateway服务及business服务
   
 5. 在windows系统中需要注意一下两点:
-- 这里使用的gateway-worker的依赖为linux版本, windows版本使用需要移除原本的依赖, 并添加windows版本gateway-worker依赖,
+
+-- 这里使用的gateway-worker的依赖为linux版本, windows版本使用需要移除原本的依赖, 并添加windows版本gateway-worker依赖,
   执行: `composer remove workerman/gateway-worker` 以及 `composer require workerman/gateway-worker-for-win`
-- 由于php不能同时启动多个进程, 每个进程需要分开启动, 直接运行 websocket-for-win.bat 即可
+
+-- 由于php不能同时启动多个进程, 每个进程需要分开启动, 或者直接运行提供的 websocket-for-win.bat 即可
