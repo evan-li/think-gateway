@@ -11,7 +11,7 @@
 
   namespace app\worker\controller;
 
-  use gateway\Server;
+  use think\gateway\Server;
 
   class Starter extends Server
   {
