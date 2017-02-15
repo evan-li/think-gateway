@@ -1,7 +1,13 @@
 # think-gateway
 基于tp5的gateway worker扩展
 
-使用方式: 
+### 安装
+```
+composer require evan-li/think-gateway
+```
+
+
+### 使用方式: 
 
 1. 创建一个GatewayWorker控制器, 在application目录下, 创建一个控制器,继承`think\gateway\Server`类,  如在`application/worker/controller`目录中创建一个控制器:
 
