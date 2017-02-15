@@ -35,13 +35,13 @@
 3. 到public目录中执行  `php ./websocket.php` 命令即可启动服务, 默认Register/Gateway/Business都会启动
 
 4. 如果要分布式部署,即当前服务器不是全部启动,启动时增加参数即可
-  + register=1 表示启动Register服务
-  + gateway=1 表示启动Gateway服务
-  + business=1 表示启动Business服务
-  + 注意: 由于是在命令行启动, 所以参数要以url方式带入到启动命令中,并且带参数时需要增加action层路径.
-  如: 
-  + `php ./websocket.php /index/register/1` 表示只启动Register服务
-  + `php ./websocket.php /index/gateway/1/business/1` 表示启动gateway服务及business服务
++ register=1 表示启动Register服务
++ gateway=1 表示启动Gateway服务
++ business=1 表示启动Business服务
++ 注意: 由于是在命令行启动, 所以参数要以url方式带入到启动命令中,并且带参数时需要增加action层路径.
+如: 
++ `php ./websocket.php /index/register/1` 表示只启动Register服务
++ `php ./websocket.php /index/gateway/1/business/1` 表示启动gateway服务及business服务
   
 5. 在windows系统中需要注意一下两点:
 
