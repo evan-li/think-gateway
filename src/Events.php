@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/2/15
- * Time: 10:32
- */
-
 namespace think\gateway;
 
 
@@ -37,6 +30,7 @@ class Events
      */
     public static $INIT_EVENT_VALUE = 'init';
 
+
     /**
      * 当客户端连接时触发
      * 如果业务不需此回调可以删除onConnect
@@ -63,6 +57,16 @@ class Events
         if($message == self::$CLIENT_PING_DATA){
             return ;
         }
+        self::processMessage($client_id, $message);
+    }
+
+    /**
+     * 处理客户端发来的消息
+     * @param $client_id
+     * @param $message
+     */
+    public static function processMessage($client_id, $message)
+    {
         // 向除了自己的所有人发送
         Gateway::sendToAll("$client_id said $message\r\n", null, $client_id);
     }
