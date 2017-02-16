@@ -1,6 +1,28 @@
 # think-gateway
 基于tp5的gateway worker扩展
 
+### 目录结构说明: 
+
+~~~
+vendor (composer第三方库目录)
+├─src                   核心代码目录
+│  ├─Server.php         GatewayWorker扩展控制器文件
+│  └─Events.php         默认的消息事件处理类
+│
+├─start-for-win         windows版本启动文件目录
+│  ├─register.php       注册服务启动文件
+│  ├─gateway.php        gateway(网关)服务启动文件
+│  └─business.php       业务服务启动文件
+│
+├─composer.json         composer 定义文件
+├─LICENSE.txt           授权说明文件
+├─README.md             README 文件
+├─start.php             linux系统服务启动文件
+└─start-for-win.bat     windows系统服务启动批处理文件
+~~~
+
+
+
 ### 安装:
 
 1. 创建thinkphp5项目
@@ -16,9 +38,16 @@
    composer require evan-li/think-gateway
    ```
 
-   ​
+   >  windows版本请使用`evan-li/think-gateway-for-win`包安装 : 
+   >
+   >  ```
+   >  composer require evan-li/think-gateway-for-win
+   >  ```
 
-### 使用: 
+> 如果没有使用过composer, 请先看 [composer入门](http://docs.phpcomposer.com/00-intro.html) , 可以使用[composer中国镜像](https://pkg.phpcomposer.com/)
+>
+
+### 简单使用: 
 
 1.  创建一个`Starter`控制器，继承`think\gateway\Server`类,用来启动Worker
 
@@ -36,7 +65,10 @@
     }
     ```
 
-2.  将的`start.php`文件拷贝到项目中的`public`目录中
+2.  复制启动文件
+
+     将的`start.php`文件拷贝到项目中的`public`目录中
+
     > 如果是windows系统, 将 `start-for-win.bat` 以及 `start-for-win`目录拷贝到 `public` 目录中
 
 3.  运行服务
@@ -47,16 +79,8 @@
        php ./start.php
        ```
 
-    2. windows系统中, 首先要切换依赖包:
+    2. windows系统中, 执行 `start-for-win.bat` 批处理文件即可
 
-       ```sh
-       // 移除linux版的gateway-worker依赖
-       composer remove workerman/gateway-worker
-       // 添加windows版gateway-worker依赖
-       composer require workerman/gateway-worker-for-win
-       ```
-
-       然后执行 `start-for-win.bat` 批处理文件即可
 
     *到此为止, 我们的gateway-worker服务就跑起来啦*
 
@@ -73,7 +97,7 @@
 
     如:  只启动Register服务时, 将 `START_GATEWAY` 与 `START_BUSINESS` 项常量注释
 
-    > windows 系统中, 直接运行 `start-for-win` 目录中对应服务的文件
+    > windows 系统中, 直接使用`php`命令运行 `start-for-win` 目录中对应服务的文件
 
 
 ### 消息处理
@@ -112,6 +136,40 @@ class EventsHandler extends Events
 ```
 
 > 默认不设置消息处理类的时候, 调用的是Events类
+
+
+
+###  项目搭建完成后的目录结构 *(只做参考用)*:
+
+> 使用正常的tp5目录结构, 框架本身相关的文件及目录不再展示
+
+```
+www  WEB部署目录（或者子目录）
+├─application                  应用目录
+│  ├─worker                    worker模块目录
+│  │  ├─controller             控制器目录
+│  │  │  └─Starter.php         gateway启动控制器文件
+│  │  └─util                   工具类目录
+│  │     └─EventsHandler.php   business线程事件处理工具类
+│  └─ ...                      其他框架相关文件及目录
+│
+├─public                       WEB目录（对外访问目录）
+│  ├─start-for-win             windows版本启动文件目录
+│  │  ├─register.php           注册服务启动文件
+│  │  ├─gateway.php            gateway(网关)服务启动文件
+│  │  └─business.php           业务服务启动文件
+│  ├─start.php                 linux系统启动文件
+│  ├─start-for-win.bat         windows系统服务启动批处理文件
+│  └─...                       其他框架相关文件及目录
+│
+├─vendor                       第三方类库目录（Composer依赖库）
+│  ├─evan-li                   
+│  │  └─think-gateway          think-gateway类库目录
+│  └─...                       其他第三方类库目录
+└─...                          其他框架相关文件及目录
+```
+
+
 
 
 
