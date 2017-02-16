@@ -20,62 +20,60 @@
 
 ### 简单使用: 
 
-1. 创建一个`Starter`控制器，继承`think\gateway\Server`类,用来启动Worker
+1.  创建一个`Starter`控制器，继承`think\gateway\Server`类,用来启动Worker
 
-   `application/worker/controller/Starter.php`
+    `application/worker/controller/Starter.php`
 
-   ```php
-   <?php
-   namespace app\worker\controller;
+    ```php
+    <?php
+    namespace app\worker\controller;
 
-   use think\gateway\Server;
+    use think\gateway\Server;
 
-   class Starter extends Server
-   {
+    class Starter extends Server
+    {
 
-   }
-   ```
+    }
+    ```
 
-2. 将的`start.php`文件拷贝到项目中的`public`目录中
+2.  将的`start.php`文件拷贝到项目中的`public`目录中
     > 如果是windows系统, 将 `start-for-win.bat` 以及 `start-for-win`目录拷贝到 `public` 目录中
 
-3. 运行服务
+3.  运行服务
 
-   1. 在linux中, 打开控制台, 执行命令: 
+    1. 在linux中, 打开控制台, 执行命令: 
 
-      ```sh
-      php ./start.php
-      ```
+       ```sh
+       php ./start.php
+       ```
 
-   2. windows系统中, 首先要切换依赖包:
+    2. windows系统中, 首先要切换依赖包:
 
-      ```sh
-      // 移除linux版的gateway-worker依赖
-      composer remove workerman/gateway-worker
-      // 添加windows版gateway-worker依赖
-      composer require workerman/gateway-worker-for-win
-      ```
+       ```sh
+       // 移除linux版的gateway-worker依赖
+       composer remove workerman/gateway-worker
+       // 添加windows版gateway-worker依赖
+       composer require workerman/gateway-worker-for-win
+       ```
 
-      然后执行 `start-for-win.bat` 批处理文件即可
+       然后执行 `start-for-win.bat` 批处理文件即可
 
-   *到此为止, 我们的gateway-worker服务就跑起来啦*
+    *到此为止, 我们的gateway-worker服务就跑起来啦*
 
-4. 分布式部署
+4.  分布式部署
 
-   如果需要分布式部署,我们可以通过修改start.php中的配置信息来控制启动哪个服务
+    如果需要分布式部署,我们可以通过修改start.php中的配置信息来控制启动哪个服务
     ```php    
-    // 定义服务启动项
-    define('START_REGISTER', true);
-    define('START_GATEWAY', true);
-    define('START_BUSINESS', true);
+     // 定义服务启动项
+     define('START_REGISTER', true);
+     define('START_GATEWAY', true);
+     define('START_BUSINESS', true);
     ```
-    以上三项分别控制Register、Gateway、Business的启动服务, 不需要启动哪个服务直接去掉即可
-   
-   如: 
-   
-   - 只启动Register服务时, 将 `START_GATEWAY` 与 `START_BUSINESS` 项常量注释即可
-   
-   > windows 系统中, 直接运行 `start-for-win` 目录中对应服务的文件即可
+     以上三项分别控制Register、Gateway、Business的启动服务, 不需要启动哪个服务直接去掉或注释就可以了
+
+    如:  只启动Register服务时, 将 `START_GATEWAY` 与 `START_BUSINESS` 项常量注释
+
+    > windows 系统中, 直接运行 `start-for-win` 目录中对应服务的文件
 
 
 ### 消息处理
