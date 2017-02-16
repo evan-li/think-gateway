@@ -123,15 +123,14 @@ class Server
     public function __construct()
     {
 
-
         // 初始化Register线程
-        if(START_REGISTER){
+        if(defined('START_REGISTER')){
             $register = new Register("text://$this->registerAddress");
             $register->name = $this->registerName;
         }
 
         // 初始化Gateway线程
-        if(START_GATEWAY){
+        if(defined('START_GATEWAY')){
             $gateway = new Gateway($this->gatewaySocketUrl);
             $gateway->name = $this->gatewayName;
             $gateway->count = $this->gatewayCount;
@@ -146,7 +145,7 @@ class Server
         }
 
         // 初始化Business线程
-        if(START_BUSINESS){
+        if(defined('START_BUSINESS')){
             $business = new BusinessWorker();
             $business->name = $this->businessName;
             $business->count = $this->businessCount;
