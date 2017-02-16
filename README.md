@@ -61,7 +61,7 @@
 
    2. windows系统中, 首先要切换依赖包:
 
-      ```
+      ```sh
       // 移除linux版的gateway-worker依赖
       composer remove workerman/gateway-worker
       // 添加windows版gateway-worker依赖
@@ -98,6 +98,43 @@
 
 
 
+
+### 消息处理
+
+处理客户端发送的消息时, 增加一个`MessageHandler`类, 继承`think\gateway\Events`类, 并实现`processMessage`方法即可, 需要注意的是, `processMessage`方法是静态方法
+
+增加`MessageHandler`类之后需要在`Starter`控制器中设置消息处理Handler:
+
+`app\worker\controller\Starter 类:`
+
+```php
+class Starter extends Server
+{
+
+    protected $businessEventHandler = 'app\worker\util\EventsHandler';
+
+}
+```
+
+`app\worker\util\EventsHanler 类:`
+
+```php
+<?php
+namespace app\worker\util;
+
+use think\gateway\Events;
+
+class EventsHandler extends Events
+{
+
+    public static function processMessage($client_id, $message)
+    {
+        parent::processMessage($client_id, $message); // do some thing
+    }
+}
+```
+
+> 默认不设置消息处理类的时候, 调用的是Events类
 
 
 
@@ -171,5 +208,5 @@ Server类是基于GatewayWorker的控制器扩展类, 使用自己的控制器�
 
 ### Events类介绍
 
-`think\gateway\Events`类简单封装了一个连接的初始化事件响应,以及心跳信息忽略, 建议自定义的Events类直接继承 `think\gateway\Events`类并实现具体的 `onMessage`方法即可, 另外, 实现的onMessage方法中, 要记得对心跳信息进行处理
+`think\gateway\Events`类简单封装了一个连接的初始化事件响应,以及心跳信息忽略, 建议自定义的Events类直接继承 `think\gateway\Events`类并实现具体的 `processMessage`方法即可
 
