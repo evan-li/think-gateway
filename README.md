@@ -36,27 +36,15 @@
    }
    ```
 
-2. 在`public`目录下添加入口文件: `websocket.php`
-
-   文件内容: 
-
-   ```php
-    #!/usr/bin/env php
-     <?php
-     define('APP_PATH', __DIR__ . '/../application/');
-
-     define('BIND_MODULE','worker/Starter');
-
-     // 加载框架引导文件
-     require __DIR__ . '/../thinkphp/start.php';
-   ```
+2. 将的`start.php`文件拷贝到项目中的`public`目录中
+    > 如果是windows系统, 将 `start-for-win.bat` 以及 `start-for-win`目录拷贝到 `public` 目录中
 
 3. 运行服务
 
    1. 在linux中, 打开控制台, 执行命令: 
 
       ```sh
-      php ./websocket.php
+      php ./start.php
       ```
 
    2. windows系统中, 首先要切换依赖包:
@@ -68,35 +56,22 @@
       composer require workerman/gateway-worker-for-win
       ```
 
-      然后, 将项目中的 `websocket-for-win.bat`文件移动到public目录下, 直接双击执行
+      然后执行 `start-for-win.bat` 批处理文件即可
 
-      *到此为止, 我们的gateway-worker服务就跑起来啦*
+   *到此为止, 我们的gateway-worker服务就跑起来啦*
 
+4. 分布式部署
 
-1. 分布式部署
-
-   如果需要分布式部署,我们可以通过url参数的形式限制启动什么服务
-
+   如果需要分布式部署,我们可以通过修改start.php中的配置信息来控制启动哪个服务
+    ```php    
+    // 定义服务启动项
+    define('START_REGISTER', true);
+    define('START_GATEWAY', true);
+    define('START_BUSINESS', true);
+    ```
+    以上三项分别控制Register/Gateway/Business的启动服务, 不需要启动哪个服务直接去掉即可
    如: 
-
-   - 只启动Register服务时, 运行: `php ./websocket.php /index/register/1`
-   - 启动gateway及business服务时, 运行: `php ./websocket.php /index/gateway/1/business/1`
-
-   > 参数说明: 
-   >
-   > register=1 表示启动Register服务
-   >
-   > gateway=1 表示启动Gateway服务
-   >
-   > business=1 表示启动Business服务
-
-   ​
-
-   > 注意: 由于是在命令行启动, 所以参数要以url方式带入到启动命令中,并且带参数时需要增加action操作路径.
-   >
-   > 如上面的例子中, 在 `php ./websocket.php`后面加的参数是 `/index/register/1`, 这里的第一层`index`是action操作(即控制器的方法)
-
-
+   - 只启动Register服务时, 将 `START_GATEWAY` 与 `START_BUSINESS` 项常量注释即可
 
 
 ### 消息处理
@@ -158,7 +133,6 @@ Server类是基于GatewayWorker的控制器扩展类, 使用自己的控制器�
 	// 注册服务线程名称，status方便查看
     protected $registerName = 'RegisterServer';
 
-
     // -------------------  gateway服务  -------------------
 	// gateway监听地址，用于客户端连接
     protected $gatewaySocketUrl = 'websocket://0.0.0.0:8282';
@@ -174,7 +148,6 @@ Server类是基于GatewayWorker的控制器扩展类, 使用自己的控制器�
     // gateway服务秘钥
     protected $gatewaySecretKey = '';
 
-
     // -------------------- business服务  -------------------
     // business服务名称，status方便查看
     protected $businessName = 'BusinessServer';
@@ -188,7 +161,6 @@ Server类是基于GatewayWorker的控制器扩展类, 使用自己的控制器�
     protected $businessProcessTimeoutHandler = '\\Workerman\\Worker::log';
     // 业务服务秘钥
     protected $businessSecretKey = '';
-
 
 
     // -------------------- 心跳相关  ------------------------

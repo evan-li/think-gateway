@@ -20,6 +20,7 @@ define('APP_PATH', __DIR__ . '/../application/');
 
 define('BIND_MODULE','worker/Starter');
 
+// 定义服务启动项
 define('START_REGISTER', true);
 define('START_GATEWAY', true);
 define('START_BUSINESS', true);
