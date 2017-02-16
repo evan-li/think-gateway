@@ -76,7 +76,7 @@ class Server
      * 业务服务事件处理
      * @var string
      */
-    protected $businessEventHandler = 'gateway\Events';
+    protected $businessEventHandler = 'think\gateway\Events';
     /**
      * 业务超时时间，可用来定位程序卡在哪里
      * @var int
