@@ -18,7 +18,7 @@
 
    ​
 
-### 简单使用: 
+### 使用: 
 
 1.  创建一个`Starter`控制器，继承`think\gateway\Server`类,用来启动Worker
 
