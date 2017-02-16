@@ -70,8 +70,11 @@
     define('START_BUSINESS', true);
     ```
     以上三项分别控制Register、Gateway、Business的启动服务, 不需要启动哪个服务直接去掉即可
+   
    如: 
+   
    - 只启动Register服务时, 将 `START_GATEWAY` 与 `START_BUSINESS` 项常量注释即可
+   
    > windows 系统中, 直接运行 `start-for-win` 目录中对应服务的文件即可
 
 
