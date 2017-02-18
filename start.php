@@ -13,17 +13,19 @@ if(strpos(strtolower(PHP_OS), 'win') === 0) {
     if(!extension_loaded('posix')) {
         exit("Please install posix extension. See http://doc3.workerman.net/appendices/install-extension.html\n");
     }
-
 }
 
-define('APP_PATH', __DIR__ . '/../application/');
+// 标记是全局启动
+define('GLOBAL_START', 1);
 
-define('BIND_MODULE','worker/Starter');
+require_once __DIR__ . '/../vendor/autoload.php';
 
-// 定义服务启动项
-define('START_REGISTER', true);
-define('START_GATEWAY', true);
-define('START_BUSINESS', true);
+use Workerman\Worker;
 
-// 加载框架引导文件
-require __DIR__ . '/../thinkphp/start.php';
+// 加载所有/start/start_*.php，以便启动所有服务
+foreach(glob(__DIR__ . '/starter/start_*.php') as $start_file)
+{
+    require_once $start_file;
+}
+// 运行所有服务
+Worker::runAll();

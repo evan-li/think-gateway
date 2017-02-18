@@ -1,4 +1,1 @@
-set dir=./start-for-win
-start php %dir%/register.php
-start php %dir%/gateway.php
-start php %dir%/business.php
+php ./starter/start_register.php ./starter/start_gateway.php ./starter/start_business.php
