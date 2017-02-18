@@ -2,7 +2,7 @@
 <?php
 
 // 加载启动项
-require_once __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use \Workerman\Worker;
 use \GatewayWorker\Register;
@@ -12,7 +12,7 @@ use \think\gateway\Utils;
 Utils::checkExtension();
 
 // 加载配置文件
-$config = require_once __DIR__ . '/config.php';
+$config = require __DIR__ . '/config.php';
 
 $registerConfig = $config['register'];
 

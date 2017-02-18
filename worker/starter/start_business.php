@@ -2,7 +2,7 @@
 <?php
 
 // 加载启动项
-require_once __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use \think\gateway\Utils;
 
