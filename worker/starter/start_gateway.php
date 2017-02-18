@@ -1,14 +1,15 @@
 #!/usr/bin/env php
 <?php
 
-// 检查扩展是否加载
-require 'check_extension.php';
-
 // 加载启动项
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use \Workerman\Worker;
 use \GatewayWorker\Gateway;
+use \think\gateway\Utils;
+
+// 检查扩展是否加载
+Utils::checkExtension();
 
 $config = require_once __DIR__ . '/config.php';
 $registerConfig = $config['register'];

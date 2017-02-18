@@ -1,8 +1,13 @@
 #!/usr/bin/env php
 <?php
 
+// 加载启动项
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use \think\gateway\Utils;
+
 // 检查扩展是否加载
-require 'check_extension.php';
+Utils::checkExtension();
 
 define('APP_PATH', __DIR__ . '/../../application/');
 
