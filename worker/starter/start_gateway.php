@@ -2,7 +2,7 @@
 <?php
 
 // 加载启动项
-require __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use \Workerman\Worker;
 use \GatewayWorker\Gateway;

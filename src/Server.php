@@ -37,4 +37,9 @@ class Server
             Worker::runAll();
         }
     }
+
+    /**
+     * 空操作, 批量启动时, 在构造方法中没有挂起线程, 需要一个空操作让框架可以正常返回
+     */
+    public function _empty() {}
 }
