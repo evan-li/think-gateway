@@ -77,7 +77,7 @@ vendor (composer第三方库目录)
 
 2.  创建worker应用入口
 
-       将的`worker` 目录拷贝到项目根目录中, `worker` 目录中包含了服务启动所需要的文件
+        将的`worker` 目录拷贝到项目根目录中, `worker` 目录中包含了服务启动所需要的文件
 
 3.  运行服务
 
@@ -199,61 +199,9 @@ www  WEB部署目录（或者子目录）
 
 ### Server类介绍
 
-Server类是基于GatewayWorker的控制器扩展类, 使用自己的控制器继承Server类即可, 继承后可以通过属性重写的方式覆盖父类的相关属性, Server类中的属性主要分为4类:
+Server类是基于GatewayWorker的控制器扩展类, 使用自己的控制器继承Server类即可, 不需要实现任何方法, 只是起一个框架入口控制器的作用
 
-1. 注册服务相关属性
-2. gateway服务相关属性
-3. business服务相关属性
-4. 心跳相关属性
-
-```php
-
-    // --------------------  注册服务  --------------------
-	// 注册服务地址
-    protected $registerAddress = '127.0.0.1:1238';
-	// 注册服务线程名称，status方便查看
-    protected $registerName = 'RegisterServer';
-
-    // -------------------  gateway服务  -------------------
-	// gateway监听地址，用于客户端连接
-    protected $gatewaySocketUrl = 'websocket://0.0.0.0:8282';
-    // 网关服务线程名称，status方便查看
-    protected $gatewayName = 'GatewayServer';
-    // gateway进程数
-    protected $gatewayCount = 1;
-    // 本机ip，分布式部署时使用内网ip，用于与business内部通讯
-    protected $gatewayLanIp = '127.0.0.1';
-    // 内部通讯起始端口，每个 gateway 实例应该都不同，假如$gateway->count=4，起始端口为4000
-    // 则一般会使用4000 4001 4002 4003 4个端口作为内部通讯端口
-    protected $gatewayLanStartPort = 2900;
-    // gateway服务秘钥
-    protected $gatewaySecretKey = '';
-
-    // -------------------- business服务  -------------------
-    // business服务名称，status方便查看
-    protected $businessName = 'BusinessServer';
-    // business进程数
-    protected $businessCount = 4;
-    // 业务服务事件处理
-    protected $businessEventHandler = 'gateway\Events';
-    // 业务超时时间，可用来定位程序卡在哪里
-    protected $businessProcessTimeout = 30;
-    // 业务超时后的回调，可用来记录日志
-    protected $businessProcessTimeoutHandler = '\\Workerman\\Worker::log';
-    // 业务服务秘钥
-    protected $businessSecretKey = '';
-
-
-    // -------------------- 心跳相关  ------------------------
-    // 心跳时间间隔，设为0则表示不检测心跳
-    protected $pingInterval = 25;
-	// $gatewayPingNotResponseLimit * $gatewayPingInterval 时间内，客户端未发送任何数据，断开客户端连接
-	// 设为0表示不监听客户端返回数据
-    protected $pingNotResponseLimit = 2;
-    // 服务端向客户端发送的心跳数据，为空不给客户端发送心跳数据
-    // 定义为静态属性方便外部调用
-    protected $pingData = '2';
-```
+> 服务相关的配置信息已归纳到配置文件中, 见: [config.php](./worker/starter/config.php) 文件中
 
 
 
