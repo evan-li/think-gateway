@@ -1,10 +1,10 @@
 [TOC]
 
-# think-gateway
+# think-gateway扩展
 
 基于tp5的gateway worker扩展
 
-## 目录结构说明:
+## 结构说明:
 
 ~~~
 vendor (composer第三方库目录)
@@ -28,6 +28,8 @@ vendor (composer第三方库目录)
 ~~~
 
 
+
+## 使用介绍
 
 ### 安装:
 
@@ -53,7 +55,9 @@ vendor (composer第三方库目录)
 > 如果没有使用过composer, 请先看 [composer入门](http://docs.phpcomposer.com/00-intro.html) , 可以使用[composer中国镜像](https://pkg.phpcomposer.com/)
 >
 
-### 简单使用: 
+
+
+### 启动服务: 
 
 1.  创建一个`Starter`控制器，继承`think\gateway\Server`类,用来启动Worker
 
@@ -154,7 +158,7 @@ start_business.php    业务服务启动文件
 
 
 
-###  Demo项目目录结构 *(只做参考用)*:
+##  Demo项目目录结构 *(只做参考用)*:
 
 > 使用正常的tp5目录结构, 框架本身相关的文件及目录不再展示
 
