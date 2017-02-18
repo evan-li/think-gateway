@@ -14,8 +14,8 @@ class Events
     public static $CLIENT_PING_DATA = '2';
 
     /**
-     * 客户端连接后服务端首次给客户端发送的json数据的操作标志 key
-     * 见 $initEventValue 字段注释
+     * 客户端连接后服务端给客户端发送初始化事件数据的操作key值
+     * 详见 $initEventValue 字段注释
      * @var string
      */
     public static $INIT_EVENT_KEY = 'action';
