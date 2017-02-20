@@ -18,13 +18,13 @@ class Events
      * 详见 $initEventValue 字段注释
      * @var string
      */
-    public static $INIT_EVENT_KEY = 'action';
+    public static $INIT_EVENT_KEY = 'type';
 
     /**
      * 客户端连接后服务端首次给客户端发送的json数据的操作对应的值
      * 当客户端连接服务端后, 服务端会直接给客户端发送一个初始化事件, 将client_id返回
-     * 如 $initEventKey 设置为 action, $initEventValue 设置为 init,
-     * 则初始化后服务端给客户端发送一次格式为: {action: 'init', client_id: xxxxxx } 的消息
+     * 如 $initEventKey 设置为 type, $initEventValue 设置为 init,
+     * 则初始化后服务端给客户端发送一次格式为: {type: 'init', client_id: xxxxxx } 的消息
      * 客户端可以通过此事件获取client_id并到业务系统中将client_id注册到当前用户中
      * @var string
      */
