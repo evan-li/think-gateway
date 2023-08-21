@@ -8,13 +8,22 @@
     }
   ],
   "require": {
-    "workerman/gateway-worker":"^3.0"
+    "workerman/gateway-worker":"^3.0",
+    "topthink/think-helper": ">=1.0.4",
+    "topthink/think-installer": "^2.0",
+    "topthink/framework": "5.1.*"
   },
   "autoload": {
     "psr-4": {
-      "think\\gateway\\": "src"
+      "evanlee\\gateway\\": "src"
     },
     "files": [
+      "src/common.php"
     ]
+  },
+  "extra": {
+    "think-config": {
+      "queue": "src/config.php"
+    }
   }
 }

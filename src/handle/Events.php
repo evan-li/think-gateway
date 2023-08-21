@@ -1,6 +1,6 @@
 <?php
-namespace think\gateway;
 
+namespace evanlee\gateway\handle;
 
 use GatewayWorker\Lib\Gateway;
 
@@ -30,7 +30,6 @@ class Events
      */
     public static $INIT_EVENT_VALUE = 'init';
 
-
     /**
      * 当客户端连接时触发
      * 如果业务不需此回调可以删除onConnect
@@ -50,6 +49,7 @@ class Events
      * 当客户端发来消息时触发
      * @param int $client_id 连接id
      * @param mixed $message 具体消息
+     * @throws \Exception
      */
     public static function onMessage($client_id, $message)
     {
@@ -64,6 +64,7 @@ class Events
      * 处理客户端发来的消息
      * @param $client_id
      * @param $message
+     * @throws \Exception
      */
     public static function processMessage($client_id, $message)
     {
@@ -74,10 +75,12 @@ class Events
     /**
      * 当用户断开连接时触发
      * @param int $client_id 连接id
+     * @throws \Exception
      */
     public static function onClose($client_id)
     {
         // 向所有人发送
         GateWay::sendToAll("$client_id logout\r\n");
     }
+
 }
