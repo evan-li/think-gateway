@@ -1,6 +1,6 @@
 {
   "name": "evan-li/think-gateway",
-  "description": "gateway worker extend for thinkphp5",
+  "description": "gateway worker extend for thinkphp5.1",
   "license": "Apache-2.0",
   "authors": [
     {
