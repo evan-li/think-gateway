@@ -1,8 +1,8 @@
 <?php
 
 \think\Console::addDefaultCommands([
-    "think\\queue\\command\\Work",
-    "think\\queue\\command\\Restart",
-    "think\\queue\\command\\Listen",
-    "think\\queue\\command\\Subscribe"
+    "evanlee\\gateway\\command\\Worker",
+    "evanlee\\gateway\\command\\WorkerBusiness",
+    "evanlee\\gateway\\command\\WorkerGateway",
+    "evanlee\\gateway\\command\\WorkerRegister"
 ]);
