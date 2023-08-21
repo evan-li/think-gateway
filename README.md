@@ -1,5 +1,11 @@
 [TOC]
 
+> 说明:
+> 
+> thinkphp5.0扩展: v0分支
+> 
+> thinkphp5.1扩展: v1分支
+
 # think-gateway扩展
 
 基于tp5的gateway worker扩展
