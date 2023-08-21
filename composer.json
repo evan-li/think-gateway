@@ -23,7 +23,7 @@
   },
   "extra": {
     "think-config": {
-      "queue": "src/config.php"
+      "worker": "src/config.php"
     }
   }
 }
